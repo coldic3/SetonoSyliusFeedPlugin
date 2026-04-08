@@ -46,6 +46,7 @@
         "webmozart/assert": "^1.1"
     },
     "require-dev": {
+        "setono/sylius-plugin-pack": "2.0.x-dev",
         "api-platform/core": "^2.7.16",
         "sylius/test-application": "^2.0.0@alpha",
         "babdev/pagerfanta-bundle": "^4.4",
@@ -62,6 +63,12 @@
         "symfony/webpack-encore-bundle": "^1.17.2 || ^2.2",
         "willdurand/negotiation": "^3.1"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/coldic3/setono-sylius-plugin-pack"
+        }
+    ],
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
