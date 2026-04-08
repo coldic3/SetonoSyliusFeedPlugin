@@ -20,7 +20,7 @@ final class SeverityCountAction
     {
         $severityCounts = $this->violationRepository->findCountsGroupedBySeverity($feed);
 
-        $content = $this->twig->render('@SetonoSyliusFeedPlugin/Admin/Violation/severity_count.html.twig', [
+        $content = $this->twig->render('@SetonoSyliusFeedPlugin/admin/violation/severity_count.html.twig', [
             'severityCounts' => $severityCounts,
         ]);
 

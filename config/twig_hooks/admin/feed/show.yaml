@@ -1,0 +1,11 @@
+sylius_twig_hooks:
+    hooks:
+        'setono_sylius_feed.admin.feed.show.content':
+            page_body:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/show/content/page_body.html.twig'
+                priority: 0
+
+        'setono_sylius_feed.admin.feed.show.content.header.title_block':
+            actions:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/show/content/header/title_block/actions.html.twig'
+                priority: 0

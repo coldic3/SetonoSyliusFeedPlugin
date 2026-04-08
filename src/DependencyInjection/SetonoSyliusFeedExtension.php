@@ -26,7 +26,7 @@ final class SetonoSyliusFeedExtension extends AbstractResourceExtension implemen
          * } $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
 
         $container->setParameter('setono_sylius_feed.storage.feed', $config['storage']['feed']);
         $container->setParameter('setono_sylius_feed.storage.feed_tmp', $config['storage']['feed_tmp']);
