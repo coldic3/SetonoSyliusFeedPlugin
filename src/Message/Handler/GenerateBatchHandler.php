@@ -6,6 +6,7 @@ namespace Setono\SyliusFeedPlugin\Message\Handler;
 
 use Doctrine\Persistence\ObjectManager;
 use InvalidArgumentException;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use const JSON_INVALID_UTF8_IGNORE;
 use const JSON_PRESERVE_ZERO_FRACTION;
 use const JSON_PRETTY_PRINT;
@@ -32,7 +33,6 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Messenger\Exception\UnrecoverableMessageHandlingException;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
@@ -45,7 +45,8 @@ use Throwable;
 use Twig\Environment;
 use Webmozart\Assert\Assert;
 
-final class GenerateBatchHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class GenerateBatchHandler
 {
     use GetChannelTrait;
     use GetFeedTrait;
