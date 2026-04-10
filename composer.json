@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "sylius-plugin",
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-json": "*",
         "doctrine/collections": "^1.6 || ^2.2",
         "doctrine/orm": "^2.7 || ^3.3",
@@ -18,14 +18,14 @@
         "setono/doctrine-orm-batcher": "dev-symfony7-support as 0.6.8",
         "setono/doctrine-orm-batcher-bundle": "dev-symfony7-support as 0.3.5",
         "spatie/enum": "^3.7",
-        "sylius/channel": "^1.0 || ^2.0",
-        "sylius/channel-bundle": "^1.0 || ^2.0",
-        "sylius/core": "^1.0 || ^2.0",
-        "sylius/core-bundle": "^1.0 || ^2.0",
-        "sylius/inventory": "^1.0 || ^2.0",
-        "sylius/locale": "^1.0 || ^2.0",
+        "sylius/channel": "^2.0",
+        "sylius/channel-bundle": "^2.0",
+        "sylius/core": "^2.0",
+        "sylius/core-bundle": "^2.0",
+        "sylius/inventory": "^2.0",
+        "sylius/locale": "^2.0",
         "sylius/resource-bundle": "^1.6",
-        "sylius/ui-bundle": "^1.0 || ^2.0",
+        "sylius/ui-bundle": "^2.0",
         "symfony/config": "^6.4 || ^7.4",
         "symfony/console": "^6.4 || ^7.4",
         "symfony/dependency-injection": "^6.4 || ^7.4",
@@ -46,7 +46,7 @@
         "webmozart/assert": "^1.1"
     },
     "require-dev": {
-        "setono/sylius-plugin-pack": "2.0.x-dev",
+        "setono/sylius-plugin-pack": "^2.0",
         "sylius/test-application": "^2.0.0@alpha",
         "babdev/pagerfanta-bundle": "^4.4",
         "behat/behat": "^3.14",
@@ -61,10 +61,6 @@
         "willdurand/negotiation": "^3.1"
     },
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/coldic3/setono-sylius-plugin-pack"
-        },
         {
             "type": "vcs",
             "url": "https://github.com/coldic3/setono-doctrine-orm-batcher"
@@ -102,7 +98,10 @@
         "sort-packages": true
     },
     "extra": {
-        "public-dir": "vendor/sylius/test-application/public"
+        "public-dir": "vendor/sylius/test-application/public",
+        "symfony": {
+            "require": "^7.4"
+        }
     },
     "scripts": {
         "analyse": "phpstan analyse",
