@@ -24,7 +24,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1" # Always use the lowest version of PHP since a higher version could create actual syntax errors in lower versions
+                    - "8.2" # Always use the lowest version of PHP since a higher version could create actual syntax errors in lower versions
 
                 dependencies:
                     - "highest"
@@ -58,10 +58,10 @@ jobs:
                 run: "vendor/bin/rector process --dry-run"
 
             -   name: "Lint yaml files"
-                run: "(cd tests/Application && bin/console lint:yaml ../../src/Resources)"
+                run: "vendor/bin/console lint:yaml config"
 
             -   name: "Lint twig files"
-                run: "(cd tests/Application && bin/console lint:twig ../../src/Resources)"
+                run: "vendor/bin/console lint:twig templates"
 
     dependency-analysis:
         name: "Dependency Analysis (PHP${{ matrix.php-version }} | Deps: ${{ matrix.dependencies }} | SF${{ matrix.symfony }})"
@@ -71,16 +71,18 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
                     - "highest"
-                
+
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Checkout"
@@ -118,9 +120,10 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
@@ -128,6 +131,7 @@ jobs:
 
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Checkout"
@@ -162,16 +166,18 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
-                
+                    - "8.4"
+                    - "8.5"
+
                 dependencies:
                     - "lowest"
                     - "highest"
 
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Checkout"
@@ -203,16 +209,18 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
                     - "highest"
-                
+
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Start MySQL"
@@ -237,16 +245,16 @@ jobs:
                     dependency-versions: "${{ matrix.dependencies }}"
 
             -   name: "Lint container"
-                run: "(cd tests/Application && bin/console lint:container)"
+                run: "vendor/bin/console lint:container"
 
             -   name: "Create database"
-                run: "(cd tests/Application && bin/console doctrine:database:create)"
+                run: "vendor/bin/console doctrine:database:create"
 
             -   name: "Create database schema"
-                run: "(cd tests/Application && bin/console doctrine:schema:create)"
+                run: "vendor/bin/console doctrine:schema:create"
 
             -   name: "Validate Doctrine mapping"
-                run: "(cd tests/Application && bin/console doctrine:schema:validate -vvv)" # The verbose flag will show 'missing' SQL statements, if any
+                run: "vendor/bin/console doctrine:schema:validate -vvv" # The verbose flag will show 'missing' SQL statements, if any
     
     mutation-tests:
         name: "Mutation tests"
@@ -256,7 +264,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.2"
 
                 dependencies:
                     - "highest"
@@ -290,7 +298,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.2"
 
                 dependencies:
                     - "highest"
