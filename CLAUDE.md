@@ -50,11 +50,11 @@ composer fix-style
 vendor/bin/rector process --dry-run
 
 # Lint Symfony container (requires test application)
-(cd tests/Application && bin/console lint:container)
+vendor/bin/console lint:container
 
 # Lint YAML/Twig files
-(cd tests/Application && bin/console lint:yaml ../../src/Resources)
-(cd tests/Application && bin/console lint:twig ../../src/Resources)
+vendor/bin/console lint:yaml config
+vendor/bin/console lint:twig templates
 ```
 
 ### Static Analysis
@@ -73,16 +73,17 @@ PHPStan is configured in `phpstan.neon` with:
 - **Baseline**: Generate with `composer analyse -- --generate-baseline` to track improvements
 
 ### Test Application
-The plugin includes a test Symfony application in `tests/Application/` for development and testing:
-- Navigate to `tests/Application/` directory
-- Run `yarn install && yarn build` to build assets
-- Use standard Symfony commands for the test app
+The plugin uses `sylius/test-application` (a shared Sylius test kernel) instead of a standalone test app.
+- Plugin-specific config lives in `tests/TestApplication/` (bundles, routes, services, templates)
+- The test app is driven by env vars in `tests/TestApplication/.env` and `.env.test`
+- Console binary available via `vendor/bin/console`
+- Assets: `yarn install && yarn build` from `vendor/sylius/test-application/`
 - **Sylius Backend Credentials**: Username: `sylius`, Password: `sylius`
 
 Database setup:
 ```bash
-(cd tests/Application && bin/console doctrine:database:create)
-(cd tests/Application && bin/console doctrine:schema:create)
+vendor/bin/console doctrine:database:create
+vendor/bin/console doctrine:schema:create
 ```
 
 ## Bash Tools Recommendations
@@ -127,7 +128,7 @@ All commands implement `CommandInterface` and can be routed to async transport:
 
 ### Feed Templates
 
-Templates in `src/Resources/views/Feed/` must define an `item` block. Example structure:
+Templates in `templates/feed/` must define an `item` block. Example structure:
 ```twig
 {% block item %}
 {# Render single feed item #}
@@ -150,7 +151,7 @@ Product models can implement optional interfaces for feed data:
 
 ### Translations
 
-The plugin provides multilingual support through translation files in `src/Resources/translations/`:
+The plugin provides multilingual support through translation files in `translations/`:
 
 - **Translation Files**: Available in 10 languages (en, da, de, es, fr, it, nl, no, pl, sv)
 - **Translation Domains**:
