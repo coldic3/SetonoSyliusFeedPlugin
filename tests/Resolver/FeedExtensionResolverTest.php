@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFeedPlugin\Tests\Resolver;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusFeedPlugin\FeedType\FeedTypeInterface;
 use Setono\SyliusFeedPlugin\Model\FeedInterface;
@@ -14,9 +15,7 @@ use Twig\Loader\ArrayLoader;
 
 final class FeedExtensionResolverTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_resolves_extension(): void
     {
         $feed = $this->createMock(FeedInterface::class);

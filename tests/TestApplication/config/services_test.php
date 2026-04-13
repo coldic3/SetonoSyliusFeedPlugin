@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return function (ContainerConfigurator $container): void {
     $env = $_ENV['APP_ENV'] ?? 'dev';
 
-    if (str_starts_with($env, 'test')) {
+    if (str_starts_with((string) $env, 'test')) {
         $container->import('../../../vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml');
     }
 };
