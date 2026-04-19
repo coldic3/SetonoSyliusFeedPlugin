@@ -50,11 +50,11 @@ composer fix-style
 vendor/bin/rector process --dry-run
 
 # Lint Symfony container (requires test application)
-vendor/bin/console lint:container
+(cd tests/Application && bin/console lint:container)
 
 # Lint YAML/Twig files
-vendor/bin/console lint:yaml config
-vendor/bin/console lint:twig templates
+(cd tests/Application && bin/console lint:yaml ../../config)
+(cd tests/Application && bin/console lint:twig ../../templates)
 ```
 
 ### Static Analysis
@@ -73,17 +73,17 @@ PHPStan is configured in `phpstan.neon` with:
 - **Baseline**: Generate with `composer analyse -- --generate-baseline` to track improvements
 
 ### Test Application
-The plugin uses `sylius/test-application` (a shared Sylius test kernel) instead of a standalone test app.
-- Plugin-specific config lives in `tests/TestApplication/` (bundles, routes, services, templates)
-- The test app is driven by env vars in `tests/TestApplication/.env` and `.env.test`
-- Console binary available via `vendor/bin/console`
-- Assets: `yarn install && yarn build` from `vendor/sylius/test-application/`
+The plugin uses a standalone test application in `tests/Application/`.
+- Config lives in `tests/Application/config/` (bundles, routes, packages, services)
+- The test app is driven by env vars in `tests/Application/.env` and `.env.test`
+- Console binary: run as `(cd tests/Application && bin/console <command>)`
+- Assets: `yarn install && yarn build` from `tests/Application/`
 - **Sylius Backend Credentials**: Username: `sylius`, Password: `sylius`
 
 Database setup:
 ```bash
-vendor/bin/console doctrine:database:create
-vendor/bin/console doctrine:schema:create
+(cd tests/Application && bin/console doctrine:database:create)
+(cd tests/Application && bin/console doctrine:schema:create)
 ```
 
 ## Bash Tools Recommendations

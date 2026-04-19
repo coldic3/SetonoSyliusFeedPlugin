@@ -1,0 +1,7 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    ide: phpstorm
+    form: true
+    csrf_protection: true
+    session:
+        handler_id: ~

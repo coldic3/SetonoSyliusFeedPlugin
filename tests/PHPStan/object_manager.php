@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Sylius\TestApplication\Kernel;
+use Setono\SyliusFeedPlugin\Tests\Application\Kernel;
 
 require __DIR__ . '/../../vendor/autoload.php';
 

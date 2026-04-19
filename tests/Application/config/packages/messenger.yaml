@@ -1,0 +1,33 @@
+framework:
+    messenger:
+        transports:
+            main:
+                dsn: '%env(SYLIUS_MESSENGER_TRANSPORT_MAIN_DSN)%'
+                options:
+                    use_notify: true
+                    check_delayed_interval: 60000
+                retry_strategy:
+                    max_retries: 3
+                    multiplier: 2
+            main_failed:
+                dsn: '%env(SYLIUS_MESSENGER_TRANSPORT_MAIN_FAILED_DSN)%'
+            catalog_promotion_removal:
+                dsn: '%env(SYLIUS_MESSENGER_TRANSPORT_CATALOG_PROMOTION_REMOVAL_DSN)%'
+                options:
+                    use_notify: true
+                    check_delayed_interval: 60000
+                retry_strategy:
+                    max_retries: 3
+                    multiplier: 2
+            catalog_promotion_removal_failed:
+                dsn: '%env(SYLIUS_MESSENGER_TRANSPORT_CATALOG_PROMOTION_REMOVAL_FAILED_DSN)%'
+            payment_request:
+                dsn: '%env(SYLIUS_MESSENGER_TRANSPORT_PAYMENT_REQUEST_DSN)%'
+                options:
+                    use_notify: true
+                    check_delayed_interval: 60000
+                retry_strategy:
+                    max_retries: 3
+                    multiplier: 2
+            payment_request_failed:
+                dsn: '%env(SYLIUS_MESSENGER_TRANSPORT_PAYMENT_REQUEST_FAILED_DSN)%'

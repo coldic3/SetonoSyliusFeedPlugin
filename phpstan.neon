@@ -9,7 +9,7 @@ parameters:
         - tests
 
     excludePaths:
-        - tests/TestApplication/*
+        - tests/Application/*
         - src/DependencyInjection/Configuration.php
 
     bootstrapFiles:
