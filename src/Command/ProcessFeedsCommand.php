@@ -16,8 +16,6 @@ final class ProcessFeedsCommand extends Command
 {
     public const NAME = 'setono:sylius-feed:process';
 
-    protected static string $defaultName = self::NAME;
-
     public function __construct(private readonly FeedProcessorInterface $feedProcessor)
     {
         parent::__construct();
