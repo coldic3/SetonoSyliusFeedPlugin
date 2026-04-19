@@ -289,7 +289,7 @@ jobs:
                     dependency-versions: "${{ matrix.dependencies }}"
 
             -   name: "Run infection"
-                run: "vendor/bin/infection"
+                run: "vendor/bin/infection --ignore-msi-with-no-mutations"
                 env:
                     STRYKER_DASHBOARD_API_KEY: "${{ secrets.STRYKER_DASHBOARD_API_KEY }}"
     
