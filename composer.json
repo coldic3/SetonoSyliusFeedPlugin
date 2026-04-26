@@ -15,8 +15,8 @@
         "liip/imagine-bundle": "^2.4",
         "psr/event-dispatcher": "^1.0",
         "psr/log": "^1.0 || ^2.0 || ^3.0",
-        "setono/doctrine-orm-batcher": "dev-symfony7-support as 0.6.8",
-        "setono/doctrine-orm-batcher-bundle": "dev-symfony7-support as 0.3.5",
+        "setono/doctrine-orm-batcher": "^0.6.8",
+        "setono/doctrine-orm-batcher-bundle": "^0.3.5",
         "spatie/enum": "^3.7",
         "sylius/channel": "^2.0",
         "sylius/channel-bundle": "^2.0",
@@ -64,16 +64,6 @@
     "conflict": {
         "payum/core": "<1.7.3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/coldic3/setono-doctrine-orm-batcher"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/coldic3/SetonoDoctrineORMBatcherBundle"
-        }
-    ],
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
