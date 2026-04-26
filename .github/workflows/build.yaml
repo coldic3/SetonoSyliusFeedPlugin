@@ -24,7 +24,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1" # Always use the lowest version of PHP since a higher version could create actual syntax errors in lower versions
+                    - "8.2" # Always use the lowest version of PHP since a higher version could create actual syntax errors in lower versions
 
                 dependencies:
                     - "highest"
@@ -41,7 +41,7 @@ jobs:
                     coverage: "none"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
@@ -58,10 +58,10 @@ jobs:
                 run: "vendor/bin/rector process --dry-run"
 
             -   name: "Lint yaml files"
-                run: "(cd tests/Application && bin/console lint:yaml ../../src/Resources)"
+                run: "(cd tests/Application && bin/console lint:yaml ../../config)"
 
             -   name: "Lint twig files"
-                run: "(cd tests/Application && bin/console lint:twig ../../src/Resources)"
+                run: "(cd tests/Application && bin/console lint:twig ../../templates)"
 
     dependency-analysis:
         name: "Dependency Analysis (PHP${{ matrix.php-version }} | Deps: ${{ matrix.dependencies }} | SF${{ matrix.symfony }})"
@@ -71,16 +71,18 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
                     - "highest"
-                
+
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Checkout"
@@ -101,7 +103,7 @@ jobs:
                 run: "composer require --dev --no-install --no-update --no-plugins --no-scripts shipmonk/composer-dependency-analyser"
             
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony }}"
                 with:
@@ -118,9 +120,10 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
@@ -128,6 +131,7 @@ jobs:
 
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Checkout"
@@ -145,11 +149,14 @@ jobs:
                 run: "composer remove --dev --no-install --no-update --no-plugins --no-scripts sylius/sylius"
             
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony }}"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
+
+            -   name: "Cache clear"
+                run: "(cd tests/Application && bin/console cache:clear)"
 
             -   name: "Static analysis"
                 run: "composer analyse"
@@ -162,16 +169,18 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
-                
+                    - "8.4"
+                    - "8.5"
+
                 dependencies:
                     - "lowest"
                     - "highest"
 
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Checkout"
@@ -186,7 +195,7 @@ jobs:
                     tools: "flex"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony }}"
                 with:
@@ -203,16 +212,18 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
                     - "highest"
-                
+
                 symfony:
                     - "~6.4.0"
+                    - "~7.4.0"
 
         steps:
             -   name: "Start MySQL"
@@ -230,7 +241,7 @@ jobs:
                     tools: "flex"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony }}"
                 with:
@@ -256,7 +267,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.2"
 
                 dependencies:
                     - "highest"
@@ -273,12 +284,12 @@ jobs:
                     php-version: "${{ matrix.php-version }}"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
             -   name: "Run infection"
-                run: "vendor/bin/infection"
+                run: "vendor/bin/infection --ignore-msi-with-no-mutations"
                 env:
                     STRYKER_DASHBOARD_API_KEY: "${{ secrets.STRYKER_DASHBOARD_API_KEY }}"
     
@@ -290,7 +301,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.2"
 
                 dependencies:
                     - "highest"
@@ -307,7 +318,7 @@ jobs:
                     php-version: "${{ matrix.php-version }}"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 

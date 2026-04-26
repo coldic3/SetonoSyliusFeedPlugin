@@ -17,7 +17,7 @@ final class AdminMenuListener
                 'route' => 'setono_sylius_feed_admin_feed_index',
             ])
                 ->setLabel('setono_sylius_feed.ui.feeds')
-                ->setLabelAttribute('icon', 'table')
+                ->setLabelAttribute('icon', 'tabler:rss')
             ;
         }
     }

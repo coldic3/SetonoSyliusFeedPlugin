@@ -50,7 +50,7 @@ class ProductItemContext implements ItemContextInterface
     ) {
     }
 
-    public function getContextList(object $product, ChannelInterface $channel, LocaleInterface $locale, FeedInterface $feed = null): ContextListInterface
+    public function getContextList(object $product, ChannelInterface $channel, LocaleInterface $locale, ?FeedInterface $feed = null): ContextListInterface
     {
         if (!$product instanceof ProductInterface) {
             throw new InvalidArgumentException(sprintf(

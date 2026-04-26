@@ -1,2 +1,2 @@
 imports:
-    - { resource: "@SetonoSyliusFeedPlugin/Resources/config/app/config.yaml" }
+    - { resource: "@SetonoSyliusFeedPlugin/config/app/config.yaml" }

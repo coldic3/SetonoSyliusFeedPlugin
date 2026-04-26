@@ -1,0 +1,15 @@
+{# @var \Setono\SyliusFeedPlugin\Model\FeedInterface resource #}
+{% set feed = hookable_metadata.context.resource %}
+
+<div class="col-12 col-md-6 d-flex justify-content-end gap-2">
+    {% if workflow_can(feed, constant('Setono\\SyliusFeedPlugin\\Workflow\\FeedGraph::TRANSITION_PROCESS')) %}
+        <a class="btn btn-primary" href="{{ path('setono_sylius_feed_admin_feed_process', {'id': feed.id}) }}">
+            {{ ux_icon('tabler:refresh') }}
+            {{ 'setono_sylius_feed.ui.generate_feed'|trans }}
+        </a>
+    {% endif %}
+    <a class="btn btn-secondary" href="{{ path('setono_sylius_feed_admin_feed_update', {'id': feed.id}) }}">
+        {{ ux_icon('tabler:pencil') }}
+        {{ 'setono_sylius_feed.ui.edit_feed'|trans }}
+    </a>
+</div>

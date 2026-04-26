@@ -49,17 +49,17 @@ return [
 ```yaml
 # config/routes/setono_sylius_feed.yaml
 setono_sylius_feed:
-    resource: "@SetonoSyliusFeedPlugin/Resources/config/routing.yaml"
+    resource: "@SetonoSyliusFeedPlugin/config/routing.yaml"
 ```
 
-If you don't use localized URLs, use this routing file instead: `@SetonoSyliusFeedPlugin/Resources/config/routing_non_localized.yaml`
+If you don't use localized URLs, use this routing file instead: `@SetonoSyliusFeedPlugin/config/routing_non_localized.yaml`
 
 ### Step 4: Configure plugin
 
 ```yaml
 # config/packages/setono_sylius_feed.yaml
 imports:
-    - { resource: "@SetonoSyliusFeedPlugin/Resources/config/app/config.yaml" }
+    - { resource: "@SetonoSyliusFeedPlugin/config/app/config.yaml" }
 ```
 
 ### Step 5: Update database schema

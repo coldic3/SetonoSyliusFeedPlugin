@@ -1,0 +1,45 @@
+setono_sylius_feed_admin_feed:
+    resource: |
+        alias: setono_sylius_feed.feed
+        section: admin
+        templates: '@SyliusAdmin\shared\crud'
+        redirect: show
+        grid: setono_sylius_feed_admin_feed
+        permission: true
+        vars:
+            all:
+                hook_prefix: setono_sylius_feed.admin.feed
+    type: sylius.resource
+
+setono_sylius_feed_admin_feed_show:
+    path: /feeds/{id}
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_feed.controller.feed::showAction
+        _sylius:
+            section: admin
+            permission: true
+            template: "@SyliusAdmin/shared/crud/show.html.twig"
+            vars:
+                hook_prefix: setono_sylius_feed.admin.feed
+
+setono_sylius_feed_admin_feed_process:
+    path: /feeds/{id}/process
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_feed.controller.action.admin.process_feed
+
+setono_sylius_feed_admin_feed_violations_index:
+    path: /feeds/{id}/violations
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_feed.controller.violation::indexAction
+        _sylius:
+            vars:
+                route:
+                    parameters:
+                        id: $id
+            template: '@SyliusAdmin/shared/crud/index.html.twig'
+            grid: setono_sylius_feed_admin_violation
+            section: admin
+            permission: true

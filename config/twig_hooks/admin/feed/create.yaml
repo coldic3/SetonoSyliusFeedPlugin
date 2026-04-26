@@ -1,0 +1,36 @@
+sylius_twig_hooks:
+    hooks:
+        'setono_sylius_feed.admin.feed.create.content':
+            form:
+                component: 'setono_sylius_feed:admin:feed:form'
+                props:
+                    resource: '@=_context.resource'
+                    form: '@=_context.form'
+                    template: '@SyliusAdmin/shared/crud/common/content/form.html.twig'
+                configuration:
+                    render_rest: false
+                priority: 0
+
+        'setono_sylius_feed.admin.feed.create.content.form.sections':
+            general:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/form/sections/general.html.twig'
+                priority: 100
+
+        'setono_sylius_feed.admin.feed.create.content.form.sections.general':
+            default:
+                enabled: false
+            name:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/form/sections/general/name.html.twig'
+                priority: 500
+            code:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/form/sections/general/code.html.twig'
+                priority: 400
+            feed_type:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/form/sections/general/feed_type.html.twig'
+                priority: 300
+            enabled:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/form/sections/general/enabled.html.twig'
+                priority: 200
+            channels:
+                template: '@SetonoSyliusFeedPlugin/admin/feed/form/sections/general/channels.html.twig'
+                priority: 100

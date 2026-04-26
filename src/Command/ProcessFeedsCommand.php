@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace Setono\SyliusFeedPlugin\Command;
 
 use Setono\SyliusFeedPlugin\Processor\FeedProcessorInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: ProcessFeedsCommand::NAME)]
 final class ProcessFeedsCommand extends Command
 {
-    protected static $defaultName = 'setono:sylius-feed:process';
+    public const NAME = 'setono:sylius-feed:process';
 
     public function __construct(private readonly FeedProcessorInterface $feedProcessor)
     {

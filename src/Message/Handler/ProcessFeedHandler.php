@@ -14,12 +14,13 @@ use Setono\SyliusFeedPlugin\Repository\FeedRepositoryInterface;
 use Setono\SyliusFeedPlugin\Validator\TemplateValidatorInterface;
 use Setono\SyliusFeedPlugin\Workflow\FeedGraph;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\Exception\UnrecoverableMessageHandlingException;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Workflow\Registry;
 
-final class ProcessFeedHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class ProcessFeedHandler
 {
     use GetFeedTrait;
 
